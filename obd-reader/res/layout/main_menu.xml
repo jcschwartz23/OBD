@@ -28,7 +28,7 @@
         android:layout_marginTop="20dp"
         android:layout_weight="0.10"
         android:background="#75999999"
-        android:text="Live Stream" />
+        android:text="Visualization" />
 
     <!-- Graphs and Visualization, Build driver profile -->
     <!-- __Activity -->
@@ -52,7 +52,7 @@
         android:layout_marginTop="20dp"
         android:layout_weight="0.10"
         android:background="#75999999"
-        android:text="Collision" />
+        android:text="Live Notify" />
 
     <!-- Set notifications, select metrics -->
     <!-- SettingsActivity -->
@@ -64,7 +64,7 @@
         android:layout_marginTop="20dp"
         android:layout_weight="0.10"
         android:background="#75999999"
-        android:text="Settings" />
+        android:text="Driver Profile" />
     
     <!-- Getting started and troubleshooting -->
     <!-- UsageInstructionActivity -->

@@ -1,11 +1,8 @@
 package eu.lighthouselabs.obd.reader.activity;
 
-import java.io.File;
-
 import eu.lighthouselabs.obd.reader.R;
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -18,13 +15,6 @@ public class StreamActivity extends Activity {
 	
 	// Sample WebViewClient in case it was needed...
     // See continueWhenLoaded() sample function for the best place to set it on our webView
-    private class MyWebClient extends WebViewClient {
-        @Override
-        public void onPageFinished(WebView view, String url)
-        {
-            Lt.d("Web page loaded: " + url);
-        }
-    }
     
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -41,6 +31,7 @@ public class StreamActivity extends Activity {
 				@Override
 				public boolean shouldOverrideUrlLoading(WebView view, String url) {
 					view.loadUrl(url);
+					view.setEnabled(false);
 					
 					return true;
 				}
@@ -51,7 +42,6 @@ public class StreamActivity extends Activity {
 			web.loadUrl("file:///android_asset/chart/testOutput.html");
 			web.loadUrl("https://drive.google.com/file/d/0B_Ll_Vw4Gui8VE53aWs2QTJoRHM/edit?usp=sharing");
 			
-			/*
 			final Button switchMain = (Button) findViewById (R.id.mainStreamButton);
 			switchMain.setOnClickListener (new View.OnClickListener() {
 				
@@ -62,6 +52,5 @@ public class StreamActivity extends Activity {
 					startActivity (act);
 				}
 			});
-			*/
 	}
 }

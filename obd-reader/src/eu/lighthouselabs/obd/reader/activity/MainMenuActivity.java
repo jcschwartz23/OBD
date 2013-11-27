@@ -1,5 +1,7 @@
 package eu.lighthouselabs.obd.reader.activity;
 
+import java.net.Socket;
+
 import eu.lighthouselabs.obd.reader.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -8,11 +10,39 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
 public class MainMenuActivity extends Activity {
+	
+	// -- Camera connection variables -- //
+	static Socket socket;
+	static final int SERVERPORT = 1035;
+	static final String SERVER_IP = "192.168.42.1";
+	
 		@Override
 		protected void onCreate (Bundle savedInstanceState) {
 				super.onCreate (savedInstanceState);
 				setContentView (R.layout.main_menu);
+				
+				// -- Camera connection -- //
+				try {
+					Intent srv = new Intent(this, ClientThread.class());
+					startService(srv);
+				}
+				catch (Exception e) {
+					// Service could not be started
+				}
 				
 				final Button switchActOne = (Button) findViewById (R.id.obdButton);
 				switchActOne.setOnClickListener (new View.OnClickListener() {
@@ -56,7 +86,7 @@ public class MainMenuActivity extends Activity {
 					@Override
 					public void onClick (View v) {
 						// TODO Auto-generated method stub
-						Intent act = new Intent (v.getContext(), CollisionActivity.class);
+						Intent act = new Intent (v.getContext(), ClientThread.class);
 						((Button)v).setBackgroundColor(Color.WHITE);
 						startActivity (act);
 					}
@@ -68,7 +98,7 @@ public class MainMenuActivity extends Activity {
 					@Override
 					public void onClick (View v) {
 						// TODO Auto-generated method stub
-						Intent act = new Intent (v.getContext(), SettingsActivity.class);
+						Intent act = new Intent (v.getContext(), ProfileActivity.class);
 						((Button)v).setBackgroundColor(Color.WHITE);
 						startActivity (act);
 					}
